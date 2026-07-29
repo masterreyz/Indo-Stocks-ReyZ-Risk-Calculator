@@ -14,8 +14,8 @@ $(document).ready(function () {
     inputValues = []
     
     $("#Content").empty();
-    NewLine("Welcome to the tip calculator!", false);
-    NewLine("What was the total bill? $", true);
+    NewLine("Welcome to the MasterReyZ Indo Stocks Risk Calculator!", false);
+    NewLine("Saham apa yang ingin dibeli? $", true);
   });
 });
 
