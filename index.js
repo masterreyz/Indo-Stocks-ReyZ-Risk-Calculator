@@ -1,4 +1,4 @@
-// Deklarasi Variabel Global
+// Deklarasi Variabel Globa
 var CurrentId = undefined;
 var inputValues = [];
 // Array ini hanya berisi pertanyaan ke-2 dan seterusnya
