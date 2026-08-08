@@ -1,666 +1,1513 @@
-/* =====================================================
+/* =========================================================
    REYZ INDO STOCKS RISK CALCULATOR
-   Responsive Full Screen Calculator
-===================================================== */
+   Professional Responsive Financial Calculator
+========================================================= */
+
+
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
 
 :root {
-  --bg: #f4f7f6;
+
+  --page-background: #eef3f0;
+
   --surface: #ffffff;
-  --surface-soft: #f6f8f7;
+  --surface-secondary: #f7f9f8;
+  --surface-hover: #f3f6f4;
 
-  --border: #dce4df;
-  --border-strong: #cbd6cf;
+  --primary: #155c38;
+  --primary-dark: #104a2c;
+  --primary-light: #edf7f1;
 
-  --text: #17231c;
-  --text-secondary: #617067;
-  --text-muted: #89958e;
+  --text-primary: #18231d;
+  --text-secondary: #637168;
+  --text-muted: #909b94;
 
-  --primary: #145b36;
-  --primary-hover: #104a2c;
-  --primary-light: #eef7f2;
+  --border: #dfe6e2;
+  --border-strong: #cbd6d0;
 
-  --blue-light: #eef5ff;
-  --blue: #4977db;
+  --danger: #c93636;
+  --danger-light: #fff2f2;
 
-  --danger: #c93c3c;
+  --blue: #4e7be8;
+  --blue-light: #eff5ff;
 
-  --radius: 12px;
+  --shadow:
+    0 2px 5px rgba(17, 51, 32, 0.04),
+    0 18px 50px rgba(17, 51, 32, 0.08);
+
+  --radius-large: 18px;
+  --radius-medium: 11px;
+  --radius-small: 7px;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
 * {
   box-sizing: border-box;
 }
 
-html,
-body {
+
+html {
   width: 100%;
   min-height: 100%;
-  margin: 0;
 }
+
 
 body {
-  min-height: 100vh;
-  min-height: 100dvh;
 
-  background: var(--bg);
-
-  font-family:
-    "Inter",
-    Arial,
-    sans-serif;
-
-  color: var(--text);
-
-  -webkit-font-smoothing: antialiased;
-}
-
-
-/* =====================================================
-   FULL SCREEN TERMINAL / CALCULATOR
-===================================================== */
-
-.terminal {
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-
-  background: var(--surface);
-
-  display: flex;
-  flex-direction: column;
-
-  overflow: hidden;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-.console-line {
   width: 100%;
 
-  padding: 22px clamp(20px, 4vw, 48px);
+  min-height: 100vh;
+  min-height: 100dvh;
 
   margin: 0;
 
   background:
     linear-gradient(
       135deg,
-      #124d2f 0%,
-      #17643c 100%
+      #edf3ef 0%,
+      #f7faf8 100%
     );
 
-  color: white;
+  color: var(--text-primary);
+
+  font-family:
+    "Inter",
+    Arial,
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+}
+
+
+/* =========================================================
+   APP CONTAINER
+========================================================= */
+
+.app-container {
+
+  width: 100%;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  padding: 20px;
 
   display: flex;
+
+  justify-content: center;
+
+  align-items: stretch;
+
+}
+
+
+/* =========================================================
+   MAIN CALCULATOR
+========================================================= */
+
+.calculator {
+
+  width: 100%;
+
+  max-width: 1180px;
+
+  min-height:
+    calc(100vh - 40px);
+
+  min-height:
+    calc(100dvh - 40px);
+
+  background:
+    var(--surface);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    var(--radius-large);
+
+  box-shadow:
+    var(--shadow);
+
+  overflow: hidden;
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.calculator-header {
+
+  width: 100%;
+
+  min-height: 100px;
+
+  padding:
+    22px clamp(22px, 4vw, 44px);
+
+  background:
+    linear-gradient(
+      135deg,
+      #124d2f 0%,
+      #17633c 100%
+    );
+
+  display: flex;
+
   justify-content: space-between;
+
   align-items: center;
 
   gap: 20px;
+
 }
 
 
-.calculator-title {
-  margin-bottom: 4px;
+.header-left {
 
-  font-size: clamp(15px, 1.5vw, 18px);
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+}
+
+
+.brand-icon {
+
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.17);
+
+  border-radius: 11px;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  color: #ffffff;
+
+  font-family:
+    "IBM Plex Mono",
+    monospace;
+
+  font-size: 18px;
+
   font-weight: 700;
+
 }
 
 
-.calculator-subtitle {
-  font-size: clamp(10px, 1vw, 12px);
+.brand-text {
+
+  min-width: 0;
+
+}
+
+
+.brand-text h1 {
+
+  margin: 0 0 5px;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(15px, 1.4vw, 18px);
+
+  font-weight: 700;
+
+  line-height: 1.3;
+
+}
+
+
+.brand-text p {
+
+  margin: 0;
 
   color:
-    rgba(255, 255, 255, 0.75);
+    rgba(255, 255, 255, 0.73);
+
+  font-size:
+    clamp(10px, 1vw, 12px);
+
+  line-height: 1.5;
+
 }
 
 
-/* =====================================================
-   BUTTON
-===================================================== */
+/* =========================================================
+   HEADER BUTTON
+========================================================= */
 
-button {
-  flex-shrink: 0;
+.calculate-button {
 
   min-width: 110px;
 
-  padding: 10px 18px;
+  min-height: 42px;
+
+  padding:
+    10px 20px;
+
+  flex-shrink: 0;
 
   border: none;
-  border-radius: 7px;
+
+  border-radius: 8px;
 
   background: #ffffff;
 
-  color: var(--primary);
+  color:
+    var(--primary);
 
-  font-family: inherit;
-  font-size: 13px;
+  font-family:
+    "Inter",
+    sans-serif;
+
+  font-size: 12px;
+
   font-weight: 700;
 
   cursor: pointer;
 
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.12);
+
   transition:
     transform 0.15s ease,
-    background 0.15s ease,
-    box-shadow 0.15s ease;
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+
 }
 
 
-button:hover {
-  background: #f4fff8;
+.calculate-button:hover {
 
-  transform: translateY(-1px);
+  background: #f6fff9;
+
+  transform:
+    translateY(-1px);
 
   box-shadow:
-    0 5px 15px rgba(0, 0, 0, 0.12);
+    0 5px 15px rgba(0, 0, 0, 0.15);
+
 }
 
 
-button:active {
-  transform: translateY(0);
+.calculate-button:active {
+
+  transform:
+    translateY(0);
+
 }
 
 
-/* =====================================================
-   CONTENT
-===================================================== */
+.calculate-button:focus-visible {
 
-#Content {
+  outline:
+    3px solid
+    rgba(255, 255, 255, 0.35);
+
+  outline-offset: 2px;
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.calculator-body {
+
   width: 100%;
 
   flex: 1;
 
   padding:
-    clamp(26px, 4vw, 48px);
+    clamp(26px, 4vw, 46px);
 
-  display: flex;
-  flex-direction: column;
 }
 
 
-/* =====================================================
-   WELCOME
-===================================================== */
+/* =========================================================
+   INTRO
+========================================================= */
 
-.welcome-line {
-  margin-bottom: 18px;
+.intro {
 
-  color: var(--text);
+  max-width: 680px;
 
-  font-size: 14px;
+  margin-bottom: 25px;
+
 }
 
 
-/* =====================================================
-   INPUT ROW
-   LABEL | : | INPUT
-===================================================== */
+.intro-label {
 
-.login-line {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--primary);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+}
+
+
+.intro h2 {
+
+  margin:
+    0 0 8px;
+
+  color:
+    var(--text-primary);
+
+  font-size:
+    clamp(22px, 2vw, 28px);
+
+  line-height: 1.25;
+
+  letter-spacing:
+    -0.025em;
+
+}
+
+
+.intro p {
+
+  margin: 0;
+
+  color:
+    var(--text-secondary);
+
+  font-size: 12px;
+
+  line-height: 1.7;
+
+}
+
+
+/* =========================================================
+   MARKET INFORMATION
+========================================================= */
+
+.market-info {
+
   width: 100%;
 
   display: grid;
 
   grid-template-columns:
-    minmax(190px, 260px)
-    12px
-    minmax(150px, 1fr);
+    repeat(3, 1fr);
 
-  align-items: center;
+  margin-bottom: 27px;
 
-  gap: 10px;
+  border:
+    1px solid var(--border);
 
-  padding: 14px 16px;
+  border-radius:
+    var(--radius-medium);
 
-  margin-bottom: 12px;
+  overflow: hidden;
 
-  background: var(--surface-soft);
+}
 
-  border: 1px solid var(--border);
 
-  border-radius: 10px;
+.market-info-item {
 
-  color: var(--text-secondary);
+  min-height: 68px;
+
+  padding:
+    13px 17px;
+
+  background:
+    var(--surface-secondary);
+
+  border-right:
+    1px solid var(--border);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 5px;
+
+}
+
+
+.market-info-item:last-child {
+
+  border-right: none;
+
+}
+
+
+.market-info-item span {
+
+  color:
+    var(--text-muted);
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing:
+    0.06em;
+
+  text-transform:
+    uppercase;
+
+}
+
+
+.market-info-item strong {
+
+  color:
+    var(--text-primary);
+
+  font-family:
+    "IBM Plex Mono",
+    monospace;
 
   font-size: 13px;
 
+  font-weight: 600;
+
+}
+
+
+/* =========================================================
+   DYNAMIC CALCULATOR CONTENT
+========================================================= */
+
+.calculator-content {
+
+  width: 100%;
+
+}
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+.initial-state {
+
+  min-height: 82px;
+
+  padding:
+    18px 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    var(--radius-medium);
+
+  background:
+    var(--surface-secondary);
+
+}
+
+
+.initial-icon {
+
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border-radius: 9px;
+
+  background:
+    var(--primary-light);
+
+  color:
+    var(--primary);
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+}
+
+
+.initial-state strong {
+
+  display: block;
+
+  margin-bottom: 3px;
+
+  color:
+    var(--text-primary);
+
+  font-size: 12px;
+
+}
+
+
+.initial-state p {
+
+  margin: 0;
+
+  color:
+    var(--text-muted);
+
+  font-size: 10px;
+
+}
+
+
+/* =========================================================
+   WELCOME LINE
+========================================================= */
+
+.welcome-line {
+
+  margin-bottom: 18px;
+
+  color:
+    var(--text-primary);
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+}
+
+
+/* =========================================================
+   INPUT ROW
+
+   LABEL | : | VALUE
+========================================================= */
+
+.login-line {
+
+  width: 100%;
+
+  min-height: 64px;
+
+  margin-bottom: 12px;
+
+  padding:
+    11px 15px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(200px, 290px)
+    14px
+    minmax(180px, 1fr);
+
+  align-items: center;
+
+  column-gap: 10px;
+
+  background:
+    var(--surface-secondary);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    var(--radius-medium);
+
+  color:
+    var(--text-secondary);
+
+  font-size: 12px;
+
   transition:
     border-color 0.18s ease,
-    box-shadow 0.18s ease;
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+
 }
 
 
 .login-line:focus-within {
-  border-color: var(--primary);
+
+  background: #ffffff;
+
+  border-color:
+    var(--primary);
 
   box-shadow:
-    0 0 0 3px rgba(20, 91, 54, 0.08);
+    0 0 0 3px
+    rgba(21, 92, 56, 0.08);
+
 }
 
+
+/* =========================================================
+   PROMPT LABEL
+========================================================= */
 
 .prompt-label {
+
   min-width: 0;
+
+  color:
+    var(--text-secondary);
+
+  font-size: 12px;
+
+  line-height: 1.4;
+
 }
 
 
+/* =========================================================
+   COLON
+========================================================= */
+
 .prompt-colon {
-  width: 12px;
+
+  width: 14px;
+
+  color:
+    var(--text-muted);
 
   text-align: center;
 
-  color: var(--text-secondary);
+  font-size: 12px;
 
   font-weight: 600;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    INPUT
-===================================================== */
+========================================================= */
 
 .terminal-input {
+
   width: 100% !important;
 
   min-width: 0;
 
-  padding: 9px 12px;
+  min-height: 40px;
 
-  background: #ffffff;
+  padding:
+    8px 12px;
 
-  border: 1px solid var(--border-strong);
+  margin: 0;
 
-  border-radius: 7px;
+  border:
+    1px solid
+    var(--border-strong);
+
+  border-radius:
+    var(--radius-small);
 
   outline: none;
 
-  color: var(--text);
+  background: #ffffff;
 
-  -webkit-text-fill-color: var(--text);
+  color:
+    var(--text-primary);
+
+  -webkit-text-fill-color:
+    var(--text-primary);
+
+  caret-color:
+    var(--primary);
 
   font-family:
     "IBM Plex Mono",
     monospace;
 
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12px;
 
-  caret-color: var(--primary);
+  font-weight: 600;
 
   transition:
     border-color 0.18s ease,
     box-shadow 0.18s ease;
+
 }
 
 
 .terminal-input:focus {
-  border-color: var(--primary);
+
+  border-color:
+    var(--primary);
 
   box-shadow:
-    0 0 0 3px rgba(20, 91, 54, 0.07);
+    0 0 0 3px
+    rgba(21, 92, 56, 0.07);
+
 }
 
 
 .terminal-input:disabled {
-  background: #eef1ef;
 
-  color: #657168;
+  background:
+    #f0f3f1;
 
-  -webkit-text-fill-color: #657168;
+  color:
+    #67736c;
+
+  -webkit-text-fill-color:
+    #67736c;
 
   opacity: 1;
+
 }
 
 
-/* Hide terminal cursor */
+/* =========================================================
+   REMOVE TERMINAL CURSOR
+========================================================= */
 
 .console-carrot {
+
   display: none;
+
 }
 
 
-/* =====================================================
-   SEPARATOR
-===================================================== */
+/* =========================================================
+   RESULT SEPARATOR
+========================================================= */
 
 .separator {
+
   width: 100%;
 
   height: 1px;
 
-  margin: 20px 0;
+  margin:
+    21px 0;
 
   padding: 0;
 
-  background: var(--border);
+  border: none;
+
+  background:
+    var(--border);
 
   color: transparent;
 
+  font-size: 0;
+
   overflow: hidden;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    RESULT ROW
+
    LABEL | : | VALUE
-===================================================== */
+========================================================= */
 
 .result-line {
+
   width: 100%;
+
+  min-height: 52px;
+
+  padding:
+    10px 12px;
 
   display: grid;
 
   grid-template-columns:
-    minmax(190px, 260px)
-    12px
-    minmax(100px, 1fr);
+    minmax(200px, 290px)
+    14px
+    minmax(150px, 1fr);
 
   align-items: center;
 
-  gap: 10px;
-
-  min-height: 48px;
-
-  padding: 11px 12px;
+  column-gap: 10px;
 
   border-bottom:
     1px solid var(--border);
 
-  color: var(--text);
+  color:
+    var(--text-primary);
 
-  font-size: 13px;
+  font-size: 12px;
+
+}
+
+
+.result-line:first-of-type {
+
+  border-top:
+    1px solid var(--border);
+
 }
 
 
 .result-label {
-  color: var(--text-secondary);
+
+  min-width: 0;
+
+  color:
+    var(--text-secondary);
+
 }
 
 
 .result-colon {
+
+  width: 14px;
+
+  color:
+    var(--text-muted);
+
   text-align: center;
 
-  color: var(--text-muted);
-
   font-weight: 600;
+
 }
 
 
 .result-value {
-  color: var(--text);
+
+  color:
+    var(--text-primary);
 
   font-family:
     "IBM Plex Mono",
     monospace;
 
   font-weight: 600;
+
+  word-break:
+    break-word;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    ERROR
-===================================================== */
+========================================================= */
 
 .error-line {
+
   margin-top: 15px;
 
-  padding: 13px 15px;
-
-  background: #fff4f4;
+  padding:
+    12px 14px;
 
   border:
-    1px solid #f1cccc;
+    1px solid #f0cccc;
 
-  border-radius: 8px;
+  border-radius:
+    8px;
 
-  color: var(--danger);
+  background:
+    var(--danger-light);
 
-  font-size: 12px;
+  color:
+    var(--danger);
+
+  font-size: 11px;
+
+  line-height: 1.5;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    FOOTER
-===================================================== */
+========================================================= */
 
 .calculator-footer {
+
   width: 100%;
 
   margin-top: auto;
 
   padding:
-    22px clamp(20px, 4vw, 48px);
+    20px
+    clamp(20px, 4vw, 44px);
+
+  background:
+    #fafbfa;
 
   border-top:
     1px solid var(--border);
 
-  background: #f8faf9;
-
-  text-align: center;
-
   display: flex;
+
   flex-direction: column;
 
   justify-content: center;
+
   align-items: center;
 
+  text-align: center;
+
   gap: 6px;
+
 }
 
 
-.calculator-footer p {
+.footer-brand {
+
   margin: 0;
 
-  text-align: center;
-}
+  color:
+    var(--text-primary);
 
+  font-size: 11px;
 
-.calculator-footer > p:first-child {
-  color: var(--text);
-
-  font-size: 12px;
   font-weight: 600;
+
+  text-align: center;
+
 }
 
 
-.disclaimer {
+.footer-disclaimer {
+
+  width: 100%;
+
   max-width: 700px;
 
-  color: var(--text-muted);
+  margin: 0 auto;
 
-  font-size: 10px;
+  color:
+    var(--text-muted);
+
+  font-size: 9px;
 
   line-height: 1.6;
+
+  text-align: center;
+
 }
 
 
-/* =====================================================
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+
+  background:
+    #cce9d8;
+
+  color:
+    #0c4528;
+
+}
+
+
+/* =========================================================
    LARGE DESKTOP
-===================================================== */
+========================================================= */
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
 
-  #Content {
-    max-width: 1100px;
+  .calculator {
 
-    width: 100%;
+    max-width:
+      1280px;
 
-    margin-left: auto;
-    margin-right: auto;
+  }
+
+
+  .calculator-body {
+
+    padding-left:
+      60px;
+
+    padding-right:
+      60px;
+
   }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    TABLET
-===================================================== */
+========================================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 
-  .console-line {
-    padding: 18px 20px;
+  .app-container {
+
+    padding: 12px;
+
   }
 
 
-  #Content {
-    padding: 24px 20px;
+  .calculator {
+
+    min-height:
+      calc(100vh - 24px);
+
+    min-height:
+      calc(100dvh - 24px);
+
+  }
+
+
+  .calculator-header {
+
+    padding:
+      20px 24px;
+
+  }
+
+
+  .calculator-body {
+
+    padding:
+      28px 24px;
+
   }
 
 
   .login-line,
   .result-line {
+
     grid-template-columns:
-      minmax(150px, 210px)
-      10px
-      1fr;
-  }
+      minmax(170px, 230px)
+      12px
+      minmax(130px, 1fr);
 
-
-  .calculator-footer {
-    padding: 20px;
   }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
-@media (max-width: 560px) {
+@media (max-width: 600px) {
 
-  .console-line {
-    align-items: flex-start;
+  body {
 
-    padding: 18px;
+    background:
+      #ffffff;
+
   }
 
 
-  button {
-    min-width: auto;
+  .app-container {
 
-    padding: 9px 13px;
+    min-height:
+      100vh;
 
-    font-size: 11px;
+    min-height:
+      100dvh;
+
+    padding: 0;
+
   }
 
 
-  #Content {
-    padding: 20px 15px;
+  .calculator {
+
+    min-height:
+      100vh;
+
+    min-height:
+      100dvh;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+  }
+
+
+  /* HEADER */
+
+  .calculator-header {
+
+    min-height:
+      84px;
+
+    padding:
+      17px 16px;
+
+    gap: 10px;
+
+  }
+
+
+  .brand-icon {
+
+    display: none;
+
+  }
+
+
+  .brand-text h1 {
+
+    font-size:
+      13px;
+
+  }
+
+
+  .brand-text p {
+
+    font-size:
+      9px;
+
+  }
+
+
+  .calculate-button {
+
+    min-width:
+      auto;
+
+    min-height:
+      37px;
+
+    padding:
+      8px 12px;
+
+    font-size:
+      10px;
+
+  }
+
+
+  /* CONTENT */
+
+  .calculator-body {
+
+    padding:
+      23px 15px 30px;
+
+  }
+
+
+  .intro {
+
+    margin-bottom:
+      20px;
+
+  }
+
+
+  .intro h2 {
+
+    font-size:
+      20px;
+
+  }
+
+
+  .intro p {
+
+    font-size:
+      11px;
+
+  }
+
+
+  /* MARKET INFO */
+
+  .market-info {
+
+    grid-template-columns:
+      repeat(3, 1fr);
+
+  }
+
+
+  .market-info-item {
+
+    min-height:
+      61px;
+
+    padding:
+      10px;
+
+  }
+
+
+  .market-info-item span {
+
+    font-size:
+      8px;
+
+  }
+
+
+  .market-info-item strong {
+
+    font-size:
+      10px;
+
   }
 
 
   /*
-     Di HP label tetap rapi,
-     lalu input turun ke baris berikutnya
+     MOBILE INPUT
+
+     Label :
+     [ Input ]
   */
 
   .login-line {
-    display: grid;
 
     grid-template-columns:
-      1fr 10px;
+      minmax(0, 1fr)
+      10px;
 
-    gap: 6px;
+    grid-template-rows:
+      auto auto;
 
-    padding: 13px;
+    row-gap:
+      8px;
+
+    column-gap:
+      4px;
+
+    min-height:
+      auto;
+
+    padding:
+      12px;
+
   }
 
 
   .prompt-label {
-    grid-column: 1;
-    grid-row: 1;
+
+    grid-column:
+      1;
+
+    grid-row:
+      1;
+
+    font-size:
+      11px;
+
   }
 
 
   .prompt-colon {
-    grid-column: 2;
-    grid-row: 1;
+
+    grid-column:
+      2;
+
+    grid-row:
+      1;
+
+    width:
+      10px;
+
   }
 
 
   .terminal-input {
+
     grid-column:
       1 / -1;
 
-    grid-row: 2;
+    grid-row:
+      2;
 
-    margin-top: 4px;
+    min-height:
+      42px;
+
+    font-size:
+      12px;
+
   }
 
 
-  /*
-     Result tetap 3 kolom
-  */
+  /* RESULTS */
 
   .result-line {
-    grid-template-columns:
-      1fr 8px auto;
 
-    gap: 5px;
+    grid-template-columns:
+      minmax(0, 1fr)
+      9px
+      auto;
+
+    column-gap:
+      4px;
+
+    min-height:
+      50px;
 
     padding:
-      11px 4px;
+      10px 3px;
 
-    font-size: 11px;
+    font-size:
+      10px;
+
+  }
+
+
+  .result-colon {
+
+    width:
+      9px;
+
   }
 
 
   .result-value {
-    text-align: right;
+
+    text-align:
+      right;
+
+    white-space:
+      nowrap;
+
   }
 
+
+  /* FOOTER */
 
   .calculator-footer {
+
     padding:
       18px 15px;
+
   }
 
 
-  .disclaimer {
-    font-size: 9px;
+  .footer-brand {
+
+    font-size:
+      10px;
+
+  }
+
+
+  .footer-disclaimer {
+
+    max-width:
+      420px;
+
+    font-size:
+      8px;
+
   }
 
 }
 
 
-/* =====================================================
-   VERY SMALL DEVICE
-===================================================== */
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
 
 @media (max-width: 380px) {
 
-  .console-line {
-    gap: 10px;
-  }
+  .calculator-header {
 
-
-  .calculator-title {
-    font-size: 13px;
-  }
-
-
-  .calculator-subtitle {
-    font-size: 9px;
-  }
-
-
-  button {
     padding:
-      8px 10px;
+      15px 12px;
+
   }
 
 
-  #Content {
+  .brand-text h1 {
+
+    font-size:
+      11px;
+
+  }
+
+
+  .brand-text p {
+
+    font-size:
+      8px;
+
+  }
+
+
+  .calculate-button {
+
     padding:
-      18px 12px;
+      7px 9px;
+
+    font-size:
+      9px;
+
+  }
+
+
+  .calculator-body {
+
+    padding:
+      20px 12px 26px;
+
+  }
+
+
+  .market-info-item {
+
+    padding:
+      8px;
+
+  }
+
+
+  .result-line {
+
+    font-size:
+      9px;
+
   }
 
 }
