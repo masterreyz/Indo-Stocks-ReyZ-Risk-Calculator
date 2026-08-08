@@ -3,40 +3,193 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="ReyZ Indo Stocks Risk Calculator - Position sizing and risk management calculator for Indonesian stocks."
+  >
+
+  <meta
+    name="author"
+    content="ReyZ"
+  >
 
   <title>ReyZ Indo Stocks Risk Calculator</title>
 
-  <link rel="stylesheet" href="./styles/main.css">
+
+  <!-- ======================================
+       GOOGLE FONT
+  ======================================= -->
 
   <link
-    href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400italic,700,700italic&subset=latin,greek,cyrillic"
-    rel="stylesheet"
-    type="text/css"
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
   >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- ======================================
+       CSS
+  ======================================= -->
+
+  <link
+    rel="stylesheet"
+    href="./styles/main.css"
+  >
+
+
+  <!-- ======================================
+       JQUERY
+  ======================================= -->
 
   <script
     src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
     crossorigin="anonymous">
   </script>
+
 </head>
+
 
 <body>
 
-  <div class="terminal">
+
+  <!-- ======================================
+       MAIN CALCULATOR
+  ======================================= -->
+
+  <main class="terminal">
+
+
+    <!-- ======================================
+         HEADER
+    ======================================= -->
 
     <div class="console-line">
-      Click
-      <button id="run-button">Run</button>
-      to run ReyZ Indo Stocks Risk Calculator.
+
+      <div>
+
+        <div class="calculator-title">
+          ReyZ Indo Stocks Risk Calculator
+        </div>
+
+        <div class="calculator-subtitle">
+          Position Sizing & Risk Management Calculator
+        </div>
+
+      </div>
+
+
+      <button
+        id="run-button"
+        type="button"
+      >
+        Calculate
+      </button>
+
     </div>
 
-    <div id="Content"></div>
 
-  </div>
+    <!-- ======================================
+         CONTENT
+    ======================================= -->
+
+    <div id="Content">
+
+
+      <!-- Initial information -->
+
+      <div class="welcome-section">
+
+        <div class="welcome-title">
+          Stock Risk Calculator
+        </div>
+
+        <div class="welcome-text">
+
+          Calculate the maximum number of lots you can buy
+          based on your entry price, stop loss, and maximum
+          acceptable risk.
+
+        </div>
+
+
+        <div class="info-box">
+
+          <div>
+            <strong>Buy Fee</strong>
+            <span>0.15%</span>
+          </div>
+
+          <div>
+            <strong>Sell Fee</strong>
+            <span>0.25%</span>
+          </div>
+
+          <div>
+            <strong>1 Lot</strong>
+            <span>100 Shares</span>
+          </div>
+
+        </div>
+
+
+        <div class="start-message">
+
+          Click
+          <strong>Calculate</strong>
+          to start.
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- ======================================
+         FOOTER
+    ======================================= -->
+
+    <footer class="calculator-footer">
+
+      <p>
+        ReyZ Indo Stocks Risk Calculator
+      </p>
+
+      <p class="disclaimer">
+        For educational and risk management purposes only.
+        This calculator does not constitute investment advice.
+      </p>
+
+    </footer>
+
+
+  </main>
+
+
+  <!-- ======================================
+       JAVASCRIPT
+  ======================================= -->
 
   <script src="./index.js"></script>
+
 
 </body>
 
