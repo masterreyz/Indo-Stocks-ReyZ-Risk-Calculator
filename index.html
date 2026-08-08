@@ -21,53 +21,23 @@
 
   <title>ReyZ Indo Stocks Risk Calculator</title>
 
-  <!-- Google Font -->
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- Main CSS -->
   <link
     rel="stylesheet"
     href="./styles/main.css"
   >
-
-  <!-- jQuery -->
-  <script
-    src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-    crossorigin="anonymous">
-  </script>
-
 </head>
 
 
 <body>
-
-  <!-- ==================================================
-       APP
-  =================================================== -->
 
   <main class="app-container">
 
     <section class="calculator">
 
 
-      <!-- ==================================================
+      <!-- ================================
            HEADER
-      =================================================== -->
+      ================================= -->
 
       <header class="calculator-header">
 
@@ -91,23 +61,21 @@
 
         </div>
 
-
-        <button
-          id="run-button"
-          class="calculate-button"
-          type="button"
-        >
-          Calculate
-        </button>
+        <div class="idx-badge">
+          IDX
+        </div>
 
       </header>
 
 
-      <!-- ==================================================
-           MAIN CONTENT
-      =================================================== -->
+      <!-- ================================
+           BODY
+      ================================= -->
 
-      <section class="calculator-body">
+      <div class="calculator-body">
+
+
+        <!-- Intro -->
 
         <div class="intro">
 
@@ -120,97 +88,392 @@
           </h2>
 
           <p>
-            Hitung ukuran posisi saham berdasarkan entry price,
-            stop loss, dan batas risiko maksimal Anda.
+            Hitung jumlah lot maksimal berdasarkan harga entry,
+            stop loss, dan batas risiko yang Anda tentukan.
           </p>
 
         </div>
 
 
-        <!-- ==================================================
+        <!-- ================================
              MARKET INFO
-        =================================================== -->
+        ================================= -->
 
         <div class="market-info">
 
           <div class="market-info-item">
 
-            <span>
-              Buy Fee
-            </span>
+            <span>Buy Fee</span>
 
-            <strong>
-              0.15%
-            </strong>
+            <strong>0.15%</strong>
 
           </div>
 
 
           <div class="market-info-item">
 
-            <span>
-              Sell Fee
-            </span>
+            <span>Sell Fee</span>
 
-            <strong>
-              0.25%
-            </strong>
+            <strong>0.25%</strong>
 
           </div>
 
 
           <div class="market-info-item">
 
-            <span>
-              1 Lot
-            </span>
+            <span>1 Lot</span>
 
-            <strong>
-              100 Shares
-            </strong>
+            <strong>100 Shares</strong>
 
           </div>
 
         </div>
 
 
-        <!-- ==================================================
-             DYNAMIC CONTENT FROM JAVASCRIPT
-        =================================================== -->
+        <!-- ================================
+             FORM
+        ================================= -->
 
-        <div
-          id="Content"
-          class="calculator-content"
+        <form
+          id="risk-form"
+          class="risk-form"
+          autocomplete="off"
         >
 
-          <div class="initial-state">
 
-            <div class="initial-icon">
-              ↗
+          <!-- TICKER -->
+
+          <div class="field-row">
+
+            <label for="ticker">
+              Saham yang ingin dibeli
+            </label>
+
+            <span class="field-colon">
+              :
+            </span>
+
+            <div class="input-wrapper">
+
+              <span class="input-prefix">
+                IDX
+              </span>
+
+              <input
+                id="ticker"
+                name="ticker"
+                type="text"
+                placeholder="BREN"
+                maxlength="10"
+                autocomplete="off"
+                required
+              >
+
             </div>
+
+          </div>
+
+
+          <!-- ENTRY -->
+
+          <div class="field-row">
+
+            <label for="entry-price">
+              Harga Entry Saham
+            </label>
+
+            <span class="field-colon">
+              :
+            </span>
+
+            <div class="input-wrapper">
+
+              <span class="input-prefix">
+                Rp
+              </span>
+
+              <input
+                id="entry-price"
+                name="entryPrice"
+                type="text"
+                inputmode="numeric"
+                placeholder="200"
+                autocomplete="off"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- STOP LOSS -->
+
+          <div class="field-row">
+
+            <label for="stop-loss">
+              Harga Stop Loss
+            </label>
+
+            <span class="field-colon">
+              :
+            </span>
+
+            <div class="input-wrapper">
+
+              <span class="input-prefix">
+                Rp
+              </span>
+
+              <input
+                id="stop-loss"
+                name="stopLoss"
+                type="text"
+                inputmode="numeric"
+                placeholder="50"
+                autocomplete="off"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- MAX RISK -->
+
+          <div class="field-row">
+
+            <label for="max-risk">
+              Max Risk dalam posisi
+            </label>
+
+            <span class="field-colon">
+              :
+            </span>
+
+            <div class="input-wrapper">
+
+              <span class="input-prefix">
+                Rp
+              </span>
+
+              <input
+                id="max-risk"
+                name="maxRisk"
+                type="text"
+                inputmode="numeric"
+                placeholder="1.000.000"
+                autocomplete="off"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- ERROR -->
+
+          <div
+            id="error-box"
+            class="error-box"
+            role="alert"
+          ></div>
+
+
+          <!-- BUTTONS -->
+
+          <div class="form-actions">
+
+            <button
+              type="button"
+              id="reset-button"
+              class="secondary-button"
+            >
+              Reset
+            </button>
+
+            <button
+              type="submit"
+              class="primary-button"
+            >
+              Calculate Risk
+            </button>
+
+          </div>
+
+        </form>
+
+
+        <!-- ================================
+             RESULT
+        ================================= -->
+
+        <section
+          id="result-card"
+          class="result-card hidden"
+          aria-live="polite"
+        >
+
+          <div class="result-heading">
 
             <div>
 
-              <strong>
-                Ready to calculate
+              <span class="result-eyebrow">
+                CALCULATION RESULT
+              </span>
+
+              <h3 id="result-ticker">
+                Position Summary
+              </h3>
+
+            </div>
+
+            <div
+              id="risk-badge"
+              class="risk-badge"
+            >
+              0%
+            </div>
+
+          </div>
+
+
+          <!-- MAIN RESULT -->
+
+          <div class="main-result">
+
+            <span>
+              Maximum Position
+            </span>
+
+            <div class="lot-value">
+
+              <strong id="result-lot">
+                0
               </strong>
 
-              <p>
-                Klik tombol Calculate untuk memulai perhitungan.
-              </p>
+              <small>
+                lot
+              </small>
+
+            </div>
+
+            <p id="result-shares">
+              0 shares
+            </p>
+
+          </div>
+
+
+          <!-- RESULT TABLE -->
+
+          <div class="result-table">
+
+
+            <div class="result-row">
+
+              <span class="result-label">
+                Risk dalam trade tersebut
+              </span>
+
+              <span class="result-colon">
+                :
+              </span>
+
+              <strong id="result-risk">
+                0%
+              </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+              <span class="result-label">
+                Max buy
+              </span>
+
+              <span class="result-colon">
+                :
+              </span>
+
+              <strong id="result-max-buy">
+                0 lot
+              </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+              <span class="result-label">
+                Total uang yang dikeluarkan
+              </span>
+
+              <span class="result-colon">
+                :
+              </span>
+
+              <strong id="result-capital">
+                Rp 0
+              </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+              <span class="result-label">
+                Uang tersisa kalau Cut Loss
+              </span>
+
+              <span class="result-colon">
+                :
+              </span>
+
+              <strong id="result-cutloss">
+                Rp 0
+              </strong>
+
+            </div>
+
+
+            <div class="result-row loss-row">
+
+              <span class="result-label">
+                Realized loss scenario
+              </span>
+
+              <span class="result-colon">
+                :
+              </span>
+
+              <strong id="result-loss">
+                Rp 0
+              </strong>
 
             </div>
 
           </div>
 
-        </div>
 
-      </section>
+          <div class="result-note">
+
+            Perhitungan realized loss sudah memperhitungkan
+            buy fee 0.15% dan sell fee 0.25%.
+
+          </div>
+
+        </section>
+
+      </div>
 
 
-      <!-- ==================================================
+      <!-- ================================
            FOOTER
-      =================================================== -->
+      ================================= -->
 
       <footer class="calculator-footer">
 
@@ -232,7 +495,7 @@
   </main>
 
 
-  <!-- Main JavaScript -->
+  <!-- JavaScript HARUS di bagian akhir BODY -->
 
   <script src="./index.js"></script>
 
