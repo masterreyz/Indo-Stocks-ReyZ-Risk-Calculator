@@ -1,130 +1,528 @@
+/* =========================================
+   REYZ INDO STOCKS RISK CALCULATOR
+   Professional Dark Terminal UI
+========================================= */
+
+:root {
+  --bg-main: #0b0f14;
+  --bg-panel: #111820;
+  --bg-panel-soft: #151d27;
+
+  --border: #25303d;
+  --border-hover: #344253;
+
+  --text-primary: #e6edf3;
+  --text-secondary: #9ca7b3;
+  --text-muted: #6f7b87;
+
+  --green: #3ddc97;
+  --green-bright: #52f2ad;
+
+  --blue: #5b8cff;
+  --blue-soft: #89a8ff;
+
+  --red: #ff6464;
+  --yellow: #f5c451;
+
+  --shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35);
+
+  --radius: 14px;
+
+  --font-mono:
+    "IBM Plex Mono",
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+}
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
 body {
-  background: #141414;
+  min-height: 100vh;
+
   margin: 0;
-  padding: 40px;
+  padding: 48px 24px;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(65, 105, 225, 0.10),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(61, 220, 151, 0.06),
+      transparent 28%
+    ),
+    var(--bg-main);
+
+  color: var(--text-primary);
+
+  font-family: var(--font-mono);
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  -webkit-font-smoothing: antialiased;
 }
 
-button {
-  font-size: 24px;
-  font-family: "IBM Plex Mono", monospace;
 
-  background-color: #ffffff;
-  color: #141414;
-
-  border: none;
-  border-radius: 4px;
-
-  padding: 5px 15px;
-
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #dcdcdc;
-}
+/* =========================================
+   TERMINAL CONTAINER
+========================================= */
 
 .terminal {
-  font-family: "IBM Plex Mono", monospace;
+  width: 100%;
+  max-width: 1050px;
 
-  color: rgb(187, 187, 187);
+  position: relative;
 
-  font-size: 24px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.018),
+      rgba(255, 255, 255, 0)
+    ),
+    var(--bg-panel);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius);
+
+  box-shadow: var(--shadow);
+
+  padding: 30px 32px 34px;
+
+  overflow: hidden;
+
+  font-family: var(--font-mono);
+  font-size: 17px;
   font-weight: 400;
+  line-height: 1.75;
 
+  color: var(--text-secondary);
+}
+
+
+/* subtle terminal top accent */
+
+.terminal::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--green),
+      var(--blue),
+      transparent
+    );
+
+  opacity: 0.8;
+}
+
+
+/* =========================================
+   TOP CONSOLE MESSAGE
+========================================= */
+
+.console-line {
+  color: var(--green);
+
+  background: rgba(61, 220, 151, 0.055);
+
+  border: 1px solid rgba(61, 220, 151, 0.13);
+
+  border-radius: 9px;
+
+  padding: 14px 16px;
+
+  margin-bottom: 28px;
+
+  font-size: 15px;
   line-height: 1.6;
 }
 
-.terminal-input {
-  background: rgba(0, 0, 0, 0);
 
-  font-family: "IBM Plex Mono", monospace;
+/* =========================================
+   RUN BUTTON
+========================================= */
 
-  color: transparent;
+button {
+  appearance: none;
 
-  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
+  min-width: 76px;
+
+  margin: 0 5px;
+
+  padding: 7px 15px;
+
+  border: 1px solid rgba(61, 220, 151, 0.35);
+
+  border-radius: 7px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(61, 220, 151, 0.16),
+      rgba(61, 220, 151, 0.08)
+    );
+
+  color: var(--green-bright);
+
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+
+  letter-spacing: 0.02em;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+
+button:hover {
+  color: #07120d;
+
+  background: var(--green);
+
+  border-color: var(--green);
+
+  box-shadow:
+    0 0 0 3px rgba(61, 220, 151, 0.10),
+    0 5px 20px rgba(61, 220, 151, 0.18);
+
+  transform: translateY(-1px);
+}
+
+
+button:active {
+  transform: translateY(0);
+}
+
+
+button:focus-visible {
   outline: none;
-  border: none;
 
-  -webkit-text-fill-color: rgb(187, 187, 187);
-
-  min-width: 10px;
+  box-shadow:
+    0 0 0 3px rgba(61, 220, 151, 0.20);
 }
 
-.terminal-purple {
-  color: #5050f2;
+
+/* =========================================
+   CONTENT
+========================================= */
+
+#Content {
+  width: 100%;
 }
 
-.console-line {
-  color: rgb(0, 178, 0);
 
-  margin-bottom: 20px;
-}
+/* =========================================
+   PROMPT LINE
+========================================= */
 
 .login-line {
-  color: #ffffff;
+  color: var(--text-primary);
+
+  margin: 8px 0;
+
+  min-height: 30px;
+
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
 }
 
-.result-line {
-  color: rgb(187, 187, 187);
-}
 
-.separator {
-  color: #5050f2;
-}
+/* =========================================
+   TERMINAL INPUT
+========================================= */
 
-.error-line {
-  color: #ff5252;
-}
-
-.console-carrot {
-  vertical-align: middle;
-
-  background: #ffffff;
-
-  height: 28px;
-  width: 14px;
-
-  margin-left: -7px;
-
+.terminal-input {
   display: inline-block;
 
-  animation: blink 1s step-start 0s infinite;
+  min-width: 14px;
+  max-width: 100%;
+
+  margin-left: 5px;
+
+  padding: 0;
+
+  background: transparent;
+
+  border: none;
+  outline: none;
+
+  color: var(--green-bright);
+
+  font-family: var(--font-mono);
+  font-size: inherit;
+  font-weight: 500;
+
+  caret-color: transparent;
+
+  -webkit-text-fill-color: var(--green-bright);
+
+  transition: color 0.2s ease;
 }
 
-::selection {
-  background-color: #ffffff;
-  color: #000000;
+
+.terminal-input:focus {
+  color: var(--green-bright);
 }
+
+
+.terminal-input:disabled {
+  color: var(--text-secondary);
+
+  -webkit-text-fill-color: var(--text-secondary);
+
+  opacity: 0.9;
+}
+
+
+/* =========================================
+   TERMINAL CURSOR
+========================================= */
+
+.console-carrot {
+  display: inline-block;
+
+  width: 9px;
+  height: 19px;
+
+  margin-left: 3px;
+
+  vertical-align: -3px;
+
+  background: var(--green-bright);
+
+  border-radius: 1px;
+
+  box-shadow:
+    0 0 8px rgba(82, 242, 173, 0.35);
+
+  animation:
+    blink 1.05s steps(1, end) infinite;
+}
+
 
 @keyframes blink {
-  50% {
+  0%,
+  48% {
+    opacity: 1;
+  }
+
+  49%,
+  100% {
     opacity: 0;
   }
 }
 
-/* Responsive untuk HP */
+
+/* =========================================
+   RESULT OUTPUT
+========================================= */
+
+.result-line {
+  color: var(--text-secondary);
+
+  padding: 2px 0;
+
+  word-break: break-word;
+}
+
+
+.result-line:hover {
+  color: var(--text-primary);
+}
+
+
+/* =========================================
+   SEPARATOR
+========================================= */
+
+.separator {
+  color: var(--blue);
+
+  margin: 12px 0;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  opacity: 0.9;
+}
+
+
+/* =========================================
+   SPECIAL COLORS
+========================================= */
+
+.terminal-purple {
+  color: var(--blue-soft);
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.error-line {
+  margin-top: 12px;
+
+  padding: 12px 14px;
+
+  color: var(--red);
+
+  background: rgba(255, 100, 100, 0.06);
+
+  border: 1px solid rgba(255, 100, 100, 0.18);
+
+  border-radius: 8px;
+
+  font-size: 15px;
+}
+
+
+/* =========================================
+   TEXT SELECTION
+========================================= */
+
+::selection {
+  color: #05100b;
+
+  background: var(--green);
+}
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #293542;
+
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a4857;
+}
+
+
+/* =========================================
+   MOBILE / TABLET
+========================================= */
 
 @media (max-width: 768px) {
 
   body {
-    padding: 20px;
+    padding: 20px 12px;
   }
 
   .terminal {
-    font-size: 17px;
+    padding: 22px 18px 26px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    line-height: 1.7;
   }
 
-  .terminal-input {
-    font-size: 17px;
+  .console-line {
+    padding: 12px;
+
+    margin-bottom: 20px;
+
+    font-size: 13px;
   }
 
   button {
-    font-size: 17px;
+    min-width: auto;
+
+    padding: 6px 11px;
+
+    font-size: 12px;
   }
 
   .console-carrot {
-    height: 20px;
-    width: 10px;
+    width: 7px;
+    height: 16px;
+
+    vertical-align: -3px;
   }
+
+  .error-line {
+    font-size: 13px;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  body {
+    padding: 12px 8px;
+  }
+
+  .terminal {
+    padding: 18px 14px 22px;
+
+    font-size: 12px;
+  }
+
+  .console-line {
+    font-size: 11px;
+  }
+
+  .login-line {
+    margin: 6px 0;
+  }
+
 }
