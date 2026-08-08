@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
   <meta charset="UTF-8">
@@ -14,182 +14,487 @@
     content="ReyZ Indo Stocks Risk Calculator - Position sizing and risk management calculator for Indonesian stocks."
   >
 
-  <meta
-    name="author"
-    content="ReyZ"
-  >
-
   <title>ReyZ Indo Stocks Risk Calculator</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 
-  <!-- ======================================
-       GOOGLE FONT
-  ======================================= -->
-
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap"
     rel="stylesheet"
   >
-
-
-  <!-- ======================================
-       CSS
-  ======================================= -->
 
   <link
     rel="stylesheet"
     href="./styles/main.css"
   >
-
-
-  <!-- ======================================
-       JQUERY
-  ======================================= -->
-
-  <script
-    src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-    crossorigin="anonymous">
-  </script>
-
 </head>
 
 
 <body>
 
+  <main class="app-shell">
 
-  <!-- ======================================
-       MAIN CALCULATOR
-  ======================================= -->
+    <section class="calculator-card">
 
-  <main class="terminal">
+      <!-- ===================================
+           HEADER
+      ==================================== -->
 
+      <header class="calculator-header">
 
-    <!-- ======================================
-         HEADER
-    ======================================= -->
+        <div class="brand">
 
-    <div class="console-line">
+          <div class="brand-icon">
+            R
+          </div>
 
-      <div>
+          <div>
 
-        <div class="calculator-title">
-          ReyZ Indo Stocks Risk Calculator
+            <h1>
+              ReyZ Indo Stocks
+            </h1>
+
+            <p>
+              Risk & Position Size Calculator
+            </p>
+
+          </div>
+
         </div>
 
-        <div class="calculator-subtitle">
-          Position Sizing & Risk Management Calculator
+        <div class="market-badge">
+          IDX
         </div>
+
+      </header>
+
+
+      <!-- ===================================
+           CONTENT
+      ==================================== -->
+
+      <div class="calculator-content">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="eyebrow">
+              POSITION SIZING
+            </span>
+
+            <h2>
+              Calculate Your Trade Risk
+            </h2>
+
+            <p>
+              Tentukan ukuran posisi berdasarkan harga entry,
+              stop loss, dan batas risiko maksimal Anda.
+            </p>
+          </div>
+
+        </div>
+
+
+        <!-- ===================================
+             INFO CARDS
+        ==================================== -->
+
+        <div class="market-info">
+
+          <div class="market-info-item">
+
+            <span>
+              Buy Fee
+            </span>
+
+            <strong>
+              0.15%
+            </strong>
+
+          </div>
+
+
+          <div class="market-info-item">
+
+            <span>
+              Sell Fee
+            </span>
+
+            <strong>
+              0.25%
+            </strong>
+
+          </div>
+
+
+          <div class="market-info-item">
+
+            <span>
+              Lot Size
+            </span>
+
+            <strong>
+              100 shares
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- ===================================
+             FORM
+        ==================================== -->
+
+        <form
+          id="risk-form"
+          class="calculator-form"
+          novalidate
+        >
+
+          <!-- TICKER -->
+
+          <div class="form-group form-group-full">
+
+            <label for="ticker">
+              Stock Ticker
+            </label>
+
+            <div class="input-wrapper">
+
+              <span class="input-prefix ticker-prefix">
+                IDX
+              </span>
+
+              <input
+                type="text"
+                id="ticker"
+                name="ticker"
+                placeholder="BBCA"
+                autocomplete="off"
+                maxlength="8"
+                required
+              >
+
+            </div>
+
+            <small>
+              Contoh: BBCA, BREN, BMRI, TLKM
+            </small>
+
+          </div>
+
+
+          <div class="form-grid">
+
+            <!-- ENTRY PRICE -->
+
+            <div class="form-group">
+
+              <label for="entry-price">
+                Entry Price
+              </label>
+
+              <div class="input-wrapper">
+
+                <span class="input-prefix">
+                  Rp
+                </span>
+
+                <input
+                  type="number"
+                  id="entry-price"
+                  name="entry-price"
+                  placeholder="5.000"
+                  min="1"
+                  step="1"
+                  inputmode="numeric"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- STOP LOSS -->
+
+            <div class="form-group">
+
+              <label for="stop-loss">
+                Stop Loss
+              </label>
+
+              <div class="input-wrapper">
+
+                <span class="input-prefix">
+                  Rp
+                </span>
+
+                <input
+                  type="number"
+                  id="stop-loss"
+                  name="stop-loss"
+                  placeholder="4.750"
+                  min="1"
+                  step="1"
+                  inputmode="numeric"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- MAX RISK -->
+
+          <div class="form-group form-group-full">
+
+            <div class="label-row">
+
+              <label for="max-risk">
+                Maximum Risk
+              </label>
+
+              <span class="field-hint">
+                Per trade
+              </span>
+
+            </div>
+
+            <div class="input-wrapper">
+
+              <span class="input-prefix">
+                Rp
+              </span>
+
+              <input
+                type="number"
+                id="max-risk"
+                name="max-risk"
+                placeholder="1.000.000"
+                min="1"
+                step="1"
+                inputmode="numeric"
+                required
+              >
+
+            </div>
+
+            <small>
+              Jumlah kerugian maksimal yang bersedia Anda terima.
+            </small>
+
+          </div>
+
+
+          <!-- ERROR -->
+
+          <div
+            id="error-message"
+            class="error-message"
+            role="alert"
+          ></div>
+
+
+          <!-- BUTTON -->
+
+          <button
+            type="submit"
+            class="calculate-button"
+          >
+
+            <span>
+              Calculate Position
+            </span>
+
+            <span class="button-arrow">
+              →
+            </span>
+
+          </button>
+
+        </form>
+
+
+        <!-- ===================================
+             RESULTS
+        ==================================== -->
+
+        <section
+          id="result-section"
+          class="result-section hidden"
+          aria-live="polite"
+        >
+
+          <div class="result-header">
+
+            <div>
+
+              <span class="eyebrow">
+                CALCULATION RESULT
+              </span>
+
+              <h3 id="result-ticker">
+                Position Summary
+              </h3>
+
+            </div>
+
+            <div
+              id="risk-badge"
+              class="risk-badge"
+            >
+              0%
+            </div>
+
+          </div>
+
+
+          <!-- PRIMARY RESULT -->
+
+          <div class="primary-result">
+
+            <span class="primary-result-label">
+              Maximum Position
+            </span>
+
+            <div class="primary-result-value">
+
+              <strong id="max-lot">
+                0
+              </strong>
+
+              <span>
+                lot
+              </span>
+
+            </div>
+
+            <p id="share-count">
+              0 shares
+            </p>
+
+          </div>
+
+
+          <!-- DETAIL RESULT -->
+
+          <div class="result-grid">
+
+            <div class="result-item">
+
+              <span class="result-label">
+                Risk per Trade
+              </span>
+
+              <strong
+                id="risk-percentage"
+                class="result-value"
+              >
+                0%
+              </strong>
+
+            </div>
+
+
+            <div class="result-item">
+
+              <span class="result-label">
+                Capital Required
+              </span>
+
+              <strong
+                id="gross-buy"
+                class="result-value"
+              >
+                Rp 0
+              </strong>
+
+            </div>
+
+
+            <div class="result-item">
+
+              <span class="result-label">
+                Value After Cut Loss
+              </span>
+
+              <strong
+                id="gross-sell"
+                class="result-value"
+              >
+                Rp 0
+              </strong>
+
+            </div>
+
+
+            <div class="result-item loss-result">
+
+              <span class="result-label">
+                Realized Loss
+              </span>
+
+              <strong
+                id="realized-loss"
+                class="result-value"
+              >
+                Rp 0
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="calculation-note">
+
+            <div class="note-icon">
+              i
+            </div>
+
+            <p>
+              Position sizing dihitung berdasarkan selisih
+              harga entry dan stop loss. Estimasi realized loss
+              juga memperhitungkan buy fee 0.15% dan sell fee
+              0.25%.
+            </p>
+
+          </div>
+
+        </section>
 
       </div>
 
 
-      <button
-        id="run-button"
-        type="button"
-      >
-        Calculate
-      </button>
+      <!-- ===================================
+           FOOTER
+      ==================================== -->
 
-    </div>
+      <footer class="calculator-footer">
 
+        <span>
+          © ReyZ Indo Stocks
+        </span>
 
-    <!-- ======================================
-         CONTENT
-    ======================================= -->
+        <span>
+          For risk management purposes only — not financial advice.
+        </span>
 
-    <div id="Content">
+      </footer>
 
-
-      <!-- Initial information -->
-
-      <div class="welcome-section">
-
-        <div class="welcome-title">
-          Stock Risk Calculator
-        </div>
-
-        <div class="welcome-text">
-
-          Calculate the maximum number of lots you can buy
-          based on your entry price, stop loss, and maximum
-          acceptable risk.
-
-        </div>
-
-
-        <div class="info-box">
-
-          <div>
-            <strong>Buy Fee</strong>
-            <span>0.15%</span>
-          </div>
-
-          <div>
-            <strong>Sell Fee</strong>
-            <span>0.25%</span>
-          </div>
-
-          <div>
-            <strong>1 Lot</strong>
-            <span>100 Shares</span>
-          </div>
-
-        </div>
-
-
-        <div class="start-message">
-
-          Click
-          <strong>Calculate</strong>
-          to start.
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-
-    <!-- ======================================
-         FOOTER
-    ======================================= -->
-
-    <footer class="calculator-footer">
-
-      <p>
-        ReyZ Indo Stocks Risk Calculator
-      </p>
-
-      <p class="disclaimer">
-        For educational and risk management purposes only.
-        This calculator does not constitute investment advice.
-      </p>
-
-    </footer>
-
+    </section>
 
   </main>
 
 
-  <!-- ======================================
-       JAVASCRIPT
-  ======================================= -->
-
   <script src="./index.js"></script>
-
 
 </body>
 
